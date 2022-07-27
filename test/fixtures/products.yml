@@ -3,11 +3,18 @@
 one:
   title: 
   description: MyText
-  image_url: MyString
+  image_url: lorem.jpg
   price: 9.99
 
 two:
   title: 
   description: MyText
-  image_url: MyString
+  image_url: lorem.jpg
   price: 9.99
+
+ruby:
+  title: Programming Ruby 1.9
+  description:
+    Ruby is the fastets growing.
+  price: 49.50
+  image_url: ruby.jpg

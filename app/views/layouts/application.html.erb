@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Depot Series</title>
+    <title>Series Online Store</title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
@@ -10,8 +10,21 @@
   </head>
 
   <body>
-  <main class='<%= controller.controller_name %>'>
-    <%= yield %>
-  </main>
+  <header class="main">
+    <h1><%= @page_title %></h1>
+  </header>
+  <section class="content">
+    <nav class="side_nav">
+      <ul>
+      <li><a href="/"></a>Home</li>
+      <li><a href="/questions"></a>Questions</li>
+      <li><a href="/news"></a>News</li>
+      <li><a href="/contact"></a>Contact</li>
+      </ul>
+    </nav>
+      <main class='<%= controller.controller_name %>'>
+        <%= yield %>
+      </main>
+  </section>
   </body>
 </html>

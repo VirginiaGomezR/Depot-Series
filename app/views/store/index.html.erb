@@ -4,7 +4,9 @@
 
 <h1>Your Series Catalog</h1>
     <ul class="catalog">
+    <% cache @products do %>
         <% @products.each do |product| %>
+        <% cache product do %>
         <li>
             <%= image_tag(product.image_url) %>
             <h2><%= product.title %></h2>
@@ -15,5 +17,7 @@
                 <%= number_to_currency(product.price) %>
             </div>
         </li>
+            <%end%>
         <%end%>
+    <%end%>
     </ul>

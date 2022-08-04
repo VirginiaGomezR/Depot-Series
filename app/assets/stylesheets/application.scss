@@ -14,6 +14,22 @@
  *= require_self
  */
 
+#cart {
+    article {
+        h2{
+            margin-top: 0;
+        }
+        background: white;
+        color: black;
+        border-radius: 0.5em;
+        margin:1em;
+        padding: 1.414em;
+        @media(min-width: 30em){
+            margin:0;
+        }
+    }
+}
+
  body{
     margin:0;
     padding:0px;

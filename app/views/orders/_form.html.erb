@@ -23,13 +23,10 @@
 
   <div class="field">
     <%= form.label :email %>
-    <%= form.text_field :email, size: 40 %>
+    <%= form.email_field :email, size: 40 %>
   </div>
 
-  <div class="field">
-    <%= form.label :pay_type %>
-    <%= form.select :pay_type, Order.pay_types.keys, prompt: 'Select a payment method' %>
-  </div>
+  <div id="pay-type-component"></div>
 
   <div class="actions">
     <%= form.submit 'Place Order' %>

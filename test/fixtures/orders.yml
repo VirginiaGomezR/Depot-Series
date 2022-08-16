@@ -4,10 +4,10 @@ one:
   name: Virginia Gómez
   address: MyText
   email: virginia@iberojapan.com
-   pay_type: Check
+  pay_type: Check
 
 two:
   name: MyString
   address: MyText
   email: MyString
-   pay_type: 1
+  pay_type: 1

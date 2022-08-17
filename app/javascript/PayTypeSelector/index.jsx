@@ -37,6 +37,7 @@ class PayTypeSelector extends React.Component {
             <option value="Purchase order">Purchase order</option>
           </select>
         </div>
+        <PayTypeCustomComponent />
       </div>
     );
   }

@@ -1,6 +1,12 @@
 require "application_system_test_case"
 
 class OrdersTest < ApplicationSystemTestCase
+  include ActiveJob::TestHelper
+  mail = ActionMailer::Base.deliveries.last
+  assert_equal ["virginia@iberojapan.com"],          mail.to
+  assert_equal 'Sam Ruby <virginia@iberojapan.com>', mail[:from].value
+  assert_equal "Pragmatic Store Order Confirmation", mail.subject
+  
   setup do
     @order = orders(:one)
   end
@@ -28,7 +34,7 @@ class OrdersTest < ApplicationSystemTestCase
     visit orders_url
     click_on "Edit", match: :first
 
-    fill_in " pay type", with: @order.pay_type
+    fill_in "Pay type", with: @order.pay_type
     fill_in "Address", with: @order.address
     fill_in "Email", with: @order.email
     fill_in "Name", with: @order.name
@@ -48,6 +54,8 @@ class OrdersTest < ApplicationSystemTestCase
   end
 
   test "check routing number" do
+    LineItem.delete_all
+    Order.delete_all
     visit store_index_url
     click_on 'Add to cart', match: :first
     click_on 'Checkout'
@@ -58,5 +66,23 @@ class OrdersTest < ApplicationSystemTestCase
     assert_no_selector "order_routing_number"
     select 'Check', from: 'Pay type'
     assert_selector "#order_routing_number"
+    fill_in "Routing #", with: "123456"
+    fill_in "Account #", with: "987654"
   end
+
+  perform_enqueued_jobs do
+   click_button "Place Order"
+  end
+
+  orders = Order.all
+  assert_equal 1, orders.size
+
+  order = orders.first
+
+  assert_equal "Dave Thomas", order.name
+  assert_equal "123 Main Street", order.address
+  assert_equal "virginia@iberojapan.com", order.email
+  assert_equal "Check", order.pay_type
+  assert_equal 1, order.line_items.size
+
 end

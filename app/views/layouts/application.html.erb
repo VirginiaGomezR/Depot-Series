@@ -19,11 +19,21 @@
       <%= render_if @cart && @cart.line_items.any?, @cart %>
     </div>
       <ul>
-      <li><a href="/"></a>Home</li>
-      <li><a href="/questions"></a>Questions</li>
-      <li><a href="/news"></a>News</li>
-      <li><a href="/contact"></a>Contact</li>
+        <li><a href="/"></a>Home</li>
+        <li><a href="/questions"></a>Questions</li>
+        <li><a href="/news"></a>News</li>
+        <li><a href="/contact"></a>Contact</li>
       </ul>
+    <% if session[:user_id] %>
+    <nav class="logged_in_nav">
+      <ul>
+        <li><%= link_to 'Orders', orders_path %></li>
+        <li><%= link_to 'Products', products_path %></li>
+        <li><%= link_to 'Users', users_path %></li>
+        <li><%= button_to 'Logout', logout_path, method: :delete  %></li>
+      </ul>
+    </nav>
+    <% end %>
     </nav>
       <main class='<%= controller.controller_name %>'>
         <%= yield %>

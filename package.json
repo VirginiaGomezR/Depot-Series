@@ -8,8 +8,10 @@
     "@rails/ujs": "^6.0.0",
     "@rails/webpacker": "^5.4.3",
     "babel-plugin-transform-react-remove-prop-types": "^0.4.24",
+    "i18n-js": "^4.0.2",
     "prop-types": "^15.8.1",
     "protractor": "^7.0.0",
+    "rails-erb-loader": "^5.5.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "turbolinks": "^5.2.0"

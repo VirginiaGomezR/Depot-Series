@@ -1,17 +1,31 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Series Online Store</title>
+    <title><%= t('.title') %></title>
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <script type="text/javascript">
+    I18n.defaultLocale = "<%= I18n.default_locale %>";
+    I18n.locale =        "<%= I18n.locale %>";
+  </script>
+  <%= javascript_pack_tag 'locale_switcher', 'data-turbolinks-track': 'reload' %>
+
   </head>
 
   <body>
   <header class="main">
-    <h1><%= @page_title %>Series Online Store</h1>
+  <aside>
+    <%= form_tag store_index_path, class: 'locale' do %>
+    <%= select_tag 'set_locale',
+    options_for_select(LANGUAGES, I18n.locale.to_s),
+    onchange: 'this.form.submit()' %>
+    <%= submit_tag 'submit', id: "submit_locale_change" %>
+    <% end %>
+  </aside>
+    <h1><%= @page_title %></h1>
   </header>
   <section class="content">
     <nav class="side_nav">
@@ -19,10 +33,10 @@
       <%= render_if @cart && @cart.line_items.any?, @cart %>
     </div>
       <ul>
-        <li><a href="/"></a>Home</li>
-        <li><a href="/questions"></a>Questions</li>
-        <li><a href="/news"></a>News</li>
-        <li><a href="/contact"></a>Contact</li>
+        <li><a href="/"><%= t('.home') %></a></li>
+        <li><a href="/questions"><%= t('.questions') %></a></li>
+        <li><a href="/news"><%= t('.news') %></a></li>
+        <li><a href="/contact"><%= t('.contact') %></a></li>
       </ul>
     <% if session[:user_id] %>
     <nav class="logged_in_nav">

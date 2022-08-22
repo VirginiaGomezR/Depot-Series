@@ -1,6 +1,8 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
+gem 'rails-i18n'
+gem 'i18n-js'
 ruby '2.5.1'
 gem 'react-rails'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails', branch: 'main'
